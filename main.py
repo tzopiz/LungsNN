@@ -24,4 +24,4 @@ def create_masks_for_all_images(coco, output_folder):
         mask = create_masks(coco, image_id)
         # Преобразуем каждую маску в формат PIL Image и сохраняем
         mask_pil = Image.fromarray(mask.astype(np.uint8) * 255)
-        mask_pil.save(os.path.join(output_folder, f"mask_image_{image_id}.png"))
+        mask_pil.save(os.path.join(output_folder, f"mask_image_{str(image_id).zfill(4)}.png"))

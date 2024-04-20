@@ -1,5 +1,6 @@
 from PIL import Image
 from torch.utils.data import Dataset
+from torch import Tensor
 import numpy as np
 import os
 
@@ -27,13 +28,14 @@ class LunksDataset(Dataset):
     def __len__(self):
         return len(self.image_paths)
 
-    def __getitem__(self, index):
-        image = Image.open(self.image_paths[index])
-        mask = Image.open(self.mask_paths[index])
+    def __getitem__(self, index: int) -> tuple[Tensor, Tensor]:
+        img = Image.open(self.image_paths[index]).convert("RGB")
+        target = Image.open(self.mask_paths[index]).convert("L")
 
-        if self.transforms:
-            augmented = self.transforms(image=np.array(image), mask=np.array(mask))
-            image = augmented['image']
-            mask = augmented['mask']
+        img = np.array(img, dtype=np.uint8)
+        target = np.array(target, dtype=np.uint8)
 
-        return image, mask
+        assert self.transforms is not None
+
+        augmented = self.transforms(image=img, mask=target)
+        return augmented["image"].float(), augmented["mask"].unsqueeze(0).float()
