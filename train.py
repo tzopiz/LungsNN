@@ -187,7 +187,7 @@ class MulticlassDiceLoss(nn.Module):
 
         dice_coefficient = (2.0 * intersection + self.eps) / (cardinality + self.eps)
 
-        dice_loss = 1.0 - dice_coefficient
+        dice_loss = 1.0 - dice_coefficient + 1.0
 
         mask = targets.sum((0, 2, 3)) > 0
         dice_loss *= mask
