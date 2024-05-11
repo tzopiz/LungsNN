@@ -11,7 +11,7 @@ class LunksDataset(Dataset):
         self.image_paths = []
         self.mask_paths = []
 
-        # Получаем список файлов в папке Links
+        # Получаем список файлов в папке Lunks
         link_dir = os.path.join(root_dir, 'Lunks')
         mask_dir = os.path.join(root_dir, 'Masks')
 
@@ -39,3 +39,4 @@ class LunksDataset(Dataset):
 
         augmented = self.transforms(image=img, mask=target)
         return augmented["image"].float(), augmented["mask"].unsqueeze(0).float()
+
