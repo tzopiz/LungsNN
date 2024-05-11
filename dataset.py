@@ -12,7 +12,7 @@ class LunksDataset(Dataset):
         self.mask_paths = []
 
         # Получаем список файлов в папке Lunks
-        link_dir = os.path.join(root_dir, 'Lunks')
+        link_dir = os.path.join(root_dir, 'Lungs')
         mask_dir = os.path.join(root_dir, 'Masks')
 
         # Перебираем файлы и добавляем изображения и соответствующие маски в списки
