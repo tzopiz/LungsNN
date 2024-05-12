@@ -34,9 +34,9 @@ class LunksDataset(Dataset):
 
         img = np.array(img, dtype=np.uint8)
         target = np.array(target, dtype=np.uint8)
-
+        mask = np.where(target, 1, 0).astype(np.ushort)
         assert self.transforms is not None
 
-        augmented = self.transforms(image=img, mask=target)
+        augmented = self.transforms(image=img, mask=mask)
         return augmented["image"].float(), augmented["mask"].unsqueeze(0).float()
 

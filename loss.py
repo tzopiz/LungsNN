@@ -63,7 +63,7 @@ class DiceLoss(nn.Module):
         self.epsilon = epsilon
 
     def forward(self, inputs: Tensor, targets: Tensor) -> Tensor:
-        print(f'inputs: {inputs}, targets: {targets}')
+        print(f'inputs: {inputs}, targets: {targets.unique()}')
         probs = self.normalization(inputs)
         print(f'probs: {probs}')
         per_channel_dice = compute_dice_per_channel(
