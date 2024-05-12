@@ -5,10 +5,7 @@ from torch.nn import functional as F  # noqa
 
 class UNet(nn.Module):
     def __init__(
-        self,
-        in_channels: int,
-        out_channels: int,
-        bilinear: bool = True
+        self, in_channels: int, out_channels: int, bilinear: bool = True
     ) -> None:
         super().__init__()
 
@@ -145,5 +142,4 @@ class OutConv(nn.Module):
 
 
 def count_model_params(model: nn.Module) -> int:
-    """Returns the amount of pytorch model parameters."""
     return sum(p.numel() for p in model.parameters())
