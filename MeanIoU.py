@@ -4,46 +4,6 @@ from torch import Tensor, nn
 EPSILON = 1e-6
 
 
-class Dice(nn.Module):
-    def __init__(
-        self,
-        threshold: float = 0.5,
-        epsilon: float = EPSILON,
-        onehot_conversion: bool = False,
-        binarize: bool = True,
-    ) -> None:
-        super().__init__()
-
-        self.threshold = threshold
-        self.epsilon = epsilon
-        self.onehot_conversion = onehot_conversion
-        self.binarize = binarize
-
-    def forward(self, inputs: Tensor, targets: Tensor) -> Tensor:
-        """
-        inputs is `N x C x Spatial`,
-        targets is `N x C x Spatial` or `N x Spatial`.
-        """
-        classes_num = inputs.shape[1]
-        if self.onehot_conversion:
-            targets = convert_to_one_hot(targets, classes_num=classes_num)
-
-        assert inputs.dim() == targets.dim()
-
-        if self.binarize:
-            preds = binarize_probs(
-                inputs=torch.sigmoid(inputs),
-                classes_num=classes_num,
-                threshold=self.threshold,
-            )
-        else:
-            preds = torch.sigmoid(inputs)
-
-        return torch.mean(
-            compute_dice_per_channel(probs=preds, targets=targets, epsilon=self.epsilon)
-        )
-
-
 class MeanIoU(nn.Module):
     def __init__(
         self,
