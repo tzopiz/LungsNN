@@ -179,7 +179,7 @@ class MulticlassDiceLoss(nn.Module):
         self.eps = eps
 
     def forward(self, logits: torch.Tensor, targets: torch.Tensor) -> torch.Tensor:
-        probas = F.softmax(logits, dim=1)
+        probas = F.sigmoid(logits)
 
         intersection = (targets * probas).sum((0, 2, 3)).clamp_min(self.eps)
         cardinality = (targets + probas).sum((0, 2, 3)).clamp_min(self.eps)
