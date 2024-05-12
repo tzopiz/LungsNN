@@ -32,7 +32,6 @@ def train(
     save_on_val: bool = True,  # saves checkpoint on the validation stage
     show_every_x_batch: int = 30,
 ) -> None:
-    model.train()
     global_train_step, global_val_step = 0, 0
     for epoch in tqdm(range(epoch_num)):
         print("-" * 30)
@@ -180,7 +179,7 @@ class MulticlassDiceLoss(nn.Module):
         self.eps = eps
 
     def forward(self, logits: torch.Tensor, targets: torch.Tensor) -> torch.Tensor:
-        probas = F.sigmoid(logits)
+        probas = F.softmax(logits, dim=1)
 
         intersection = (targets * probas).sum((0, 2, 3)).clamp_min(self.eps)
         cardinality = (targets + probas).sum((0, 2, 3)).clamp_min(self.eps)
