@@ -3,7 +3,6 @@ from torch import Tensor, nn
 
 EPSILON = 1e-6
 
-
 class MeanIoU(nn.Module):
     def __init__(
         self,
