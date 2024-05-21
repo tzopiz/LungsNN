@@ -4,7 +4,7 @@ from torch import Tensor
 import numpy as np
 import os
 
-class LunksDataset(Dataset):
+class LungsDataset(Dataset):
     def __init__(self, root_dir, transforms=None):
         self.root_dir = root_dir
         self.transforms = transforms
