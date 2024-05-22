@@ -1,0 +1,5 @@
+torch~=2.2.2
+accelerate~=0.29.3
+tqdm~=4.66.2
+numpy~=1.26.4
+pillow~=10.3.0
