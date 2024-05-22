@@ -37,6 +37,7 @@ class DiceLoss(nn.Module):
         # Применяем сигмоиду к входным данным, чтобы получить вероятности
         probs = nn.Sigmoid()(inputs)
 
+        print(f"dicelos inputs: {inputs.unique()}, targets: {targets.unique()}")
         # Вычисляем Dice коэффициент для каждого канала
         per_channel_dice = compute_dice_per_channel(
             probs=probs, targets=targets, epsilon=self.epsilon, weights=self.weights

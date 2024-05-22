@@ -45,7 +45,7 @@ class MeanIoU(nn.Module):
         Returns:
             Tensor: Значение Mean IoU.
         """
-        classes_num = inputs.shape[1]
+        classes_num = inputs.shape[1] # кол-во классов
 
         # Конвертируем целевые значения в one-hot формат, если это указано
         if self.onehot_conversion:

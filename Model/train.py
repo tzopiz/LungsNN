@@ -7,10 +7,9 @@ from torch import nn, optim
 from torch.optim.lr_scheduler import LRScheduler
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
-
+from tqdm.auto import tqdm
 from accelerate import Accelerator
 from CheckpointSaver import CheckpointSaver
-from tqdm.auto import tqdm
 
 
 def train(

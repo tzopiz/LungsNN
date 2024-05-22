@@ -1,4 +1,5 @@
 import torch
+
 from torch import Tensor, nn
 from torch.nn import functional as F  # noqa
 
@@ -158,7 +159,8 @@ class _Down(nn.Module):
         super().__init__()
 
         self.maxpool_conv = nn.Sequential(
-            nn.MaxPool2d(2), DoubleConv(in_channels, out_channels)
+            nn.MaxPool2d(2),
+            DoubleConv(in_channels, out_channels)
         )
 
     def forward(self, x: Tensor) -> Tensor:
