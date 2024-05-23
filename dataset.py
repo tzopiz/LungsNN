@@ -59,7 +59,7 @@ class LungsDataset(Dataset):
         index (int): Индекс изображения и маски.
 
         Returns:
-        tuple[Tensor, Tensor]: Кортеж, содержащий изображение и его маску.
+            tuple[Tensor, Tensor]: Кортеж, содержащий изображение и его маску.
         """
         # Загружаем изображение и маску
         img = Image.open(self.image_paths[index]).convert("RGB")

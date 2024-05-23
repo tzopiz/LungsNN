@@ -1,15 +1,15 @@
 from __future__ import annotations
 from typing import Any, Callable
 
-from torch import nn, optim
+import os
+import torch
+
+from torch import optim, nn
 from torch.optim.lr_scheduler import LRScheduler
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 from tqdm.auto import tqdm
-import os
-import torch
 
-from torch import nn
 from pathlib import Path
 from dataclasses import dataclass
 from os.path import join as pjoin
